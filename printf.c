@@ -6,16 +6,15 @@
 
 /**
  * get_print - checkes which specifier to print
- * @format:character and specifiers
- * @ch: character that holds the conversion specifier
- * func_arr: array to struct ops
- * @args: arguments
- *Return : char to be printed
+ * @format:character and specifier
+ *Return: char to be printed
  */
 
-int get_print(const char *format)(va_list args, flags_t *func_arr)
+int get_print(const char *format, ...)
 {
+	int (*func_arr)(va_list, flags_t *);
 	char ch;
+	va_list args;
 	int x = 0, y = 0, z = 0;
 
 	a = format[b];
@@ -26,7 +25,6 @@ int get_print(const char *format)(va_list args, flags_t *func_arr)
 			z = 0;
 			y++;
 			ch = format[y];
-			
 			while (func_arr[z].type != NULL && 
 				ch != *(func_arr[z].type))
 				z++;
@@ -75,7 +73,7 @@ int _printf(const char *format, ...)
 	};
 
 	if (format == NULL)
-		return (- 1);
+		return (-1);
 	va_start(args, format);
 	ch = get_print(format, gets, args);
 	va_end(args);
