@@ -1,8 +1,11 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdlib.h>
+#include <stdarg.h>
+
 /**
- * struct flags_printf - struct conversion to function
+ * struct flags - struct conversion to function
  * when a flag specifier is passed to _printf()
  * @plus: flag for the '+' character
  * @space: flag for the ' ' character
@@ -10,7 +13,7 @@
  *
  */
 
-typedef struct flags_printf
+typedef struct flags
 
 {
 	int plus;
