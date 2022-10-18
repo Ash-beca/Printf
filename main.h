@@ -31,6 +31,7 @@ typedef struct specifier
 		char c;
 		int (*f)(va_list ap, flags_t *f);
 } specifier;
+int _rot13(va_list rot)
 int print_int(va_list l, flags_t *f);
 void print_number(int n);
 int print_unsigned(va_list l, flags_t *f);
