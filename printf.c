@@ -5,7 +5,7 @@
 
 
 /**
- * get-print - checkes which specifier to print
+ * get_print - checkes which specifier to print
  * @format:character and specifiers
  * @ch: character that holds the conversion specifier
  * func_arr: array to struct ops
@@ -26,7 +26,7 @@ int get_print(const char *format)(va_list args, flags_t *func_arr)
 			z = 0;
 			y++;
 			ch = format[y];
-
+			
 			while (func_arr[z].type != NULL && 
 				ch != *(func_arr[z].type))
 				z++;
@@ -59,7 +59,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i = 0;
-	
+
 	specifier func_arr[] = {
 		{"c", ch},
 		{"s", str},
