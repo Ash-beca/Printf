@@ -7,7 +7,7 @@
  * Return: Function to specifiers
  */
 
-int get_specifiers(const char c, va_list ap)
+int get_specifiers(char c, va_list ap)
 {
 	int i;
 
@@ -17,7 +17,7 @@ int get_specifiers(const char c, va_list ap)
 		{"d", print_int},
 		{"i", print_int},
 		{"b", print_bin},
-		{"o", print_oct},
+		{"o", print_octal},
 		{"u", print_unsigned},
 		{"x", print_hex_lower},
 		{"X", print_hex_upper},
