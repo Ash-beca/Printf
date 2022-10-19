@@ -31,7 +31,7 @@ int get_specifiers(const char c, va_list ap)
 
 	if (i = 0; i < flags; i++)
 		if (func_arr[i].specifier[0] == c)
-			return (func_arr[i].func(ap));
+			return (func_arr[i].f);
 	}
 	return (NULL);
 }
@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int count = 0, i = 0;
-	int (*func)();
+	int (*f)();
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))
 
@@ -59,8 +59,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-				func = get_specifiers(format[i + 1], ap);
-			if (func == NULL)
+				f = get_specifiers(format[i + 1], ap);
+			if (f == NULL)
 			{
 				_putchar(format[i]);
 				count++;
