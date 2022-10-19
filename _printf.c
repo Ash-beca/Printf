@@ -7,7 +7,7 @@
  * Return: Function to specifiers
  */
 
-int get_specifiers(char c, va_list ap)
+int (*get_specifiers(char c))(va_list ap)
 {
 	int i;
 
@@ -32,7 +32,7 @@ int get_specifiers(char c, va_list ap)
 	for (i = 0; i < flags; i++)
 	{
 		if (func_arr[i].c[0] == c)
-			return (func_arr[i].f(ap));
+			return (func_arr[i].f);
 	}
 	
 	return (0);

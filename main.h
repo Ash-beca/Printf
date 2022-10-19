@@ -21,6 +21,7 @@ int print_rot13(va_list ap);
 int print_percent(va_list ap __attribute__((unused)));
 
 
+
  /**
   * struct specifier - struct to choose the right function depending
   * on the format specifier passed to _printf()
