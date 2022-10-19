@@ -29,11 +29,13 @@ int get_specifiers(char c, va_list ap)
 	};
 	int flags = 14;
 
-	if (i = 0; i < flags; i++)
-		if (func_arr[i].specifier[0] == c)
-			return (func_arr[i].f);
+	for (i = 0; i < flags; i++)
+	{
+		if (func_arr[i].c[0] == c)
+			return (func_arr[i].f(ap));
 	}
-	return (NULL);
+	
+	return (0);
 }
 
 /**
@@ -59,7 +61,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-				f = get_specifiers(format[i + 1], ap);
+				f = get_specifiers(*(format + i + 1), ap);
 			if (f == NULL)
 			{
 				_putchar(format[i]);
@@ -68,7 +70,7 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				count += func(ap);
+				count += f(ap);
 				i += 2;
 				continue;
 			}

@@ -31,7 +31,7 @@ int print_percent(va_list ap __attribute__((unused)));
 typedef struct specifier
 
 {
-		char c;
+		char *c;
 		int (*f)(va_list);
 } spec;
 #endif
