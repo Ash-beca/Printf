@@ -1,38 +1,79 @@
 #ifndef MAIN_H
+
 #define MAIN_H
 
-#include <stdlib.h>
 #include <stdarg.h>
 
-int _putchar(char c);
-int _printf(const char *format, ...);
-int print_char(va_list ap);
-int print_str(va_list ap);
-int print_int(va_list ap);
-int print_bin(va_list ap);
-int print_octal(va_list ap);
-int print_hex_lower(va_list ap);
-int print_hex_upper(va_list ap);
-int print_unsigned(va_list ap);
-int print_str_unprintable(va_list ap);
-int print_str_reverse(va_list ap);
-int print_ptr(va_list ap);
-int print_rot13(va_list ap);
-int print_percent(va_list ap __attribute__((unused)));
+#include <stdio.h>
+
+#include <unistd.h>
 
 
 
- /**
-  * struct specifier - struct to choose the right function depending
-  * on the format specifier passed to _printf()
-  * @c: flag string
-  * @f: pointer function
-  */
+#define UNUSED(x) (void)(x)
 
-typedef struct specifier
+#define BUFF_SIZE 1024
+
+
+
+/* FLAGS */
+
+#define F_MINUS 1
+
+#define F_PLUS 2
+
+#define F_ZERO 4
+
+#define F_HASH 8
+
+#define F_SPACE 16
+
+
+
+/* SIZES */
+
+#define S_LONG 2
+
+#define S_SHORT 1
+
+
+
+/**
+ * struct fmt - Struct operation
+ *
+ * @fmt: The format.
+ * @fn: The function associated.
+ */
+
+struct fmt
 
 {
-		char *c;
-		int (*f)(va_list);
-} spec;
-#endif
+
+	char fmt;
+
+	int (*fn)(va_list, char[], int, int, int, int);
+
+};
+
+
+
+
+
+/**
+ * typedef struct fmt fmt_t - Struct operation
+ *
+ * @fmt: The format.
+ * @fm_t: The function associated.
+ */
+
+typedef struct fmt fmt_t;
+
+
+
+int _printf(const char *format, ...);
+
+int handle_print(const char *fmt, int *i,
+
+va_list list, char buffer[], int flags, int width, int precision, int size);
+
+#endif /*MAIN_H*/
