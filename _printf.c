@@ -7,7 +7,7 @@
  * Return: Function to specifiers
  */
 
-int (*get_specifiers(char c))(va_list ap)
+int (*get_specifiers(char c, va_list ap))
 {
 	int i;
 
@@ -61,7 +61,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if (format[i + 1] != '\0')
-				f = get_specifiers(*(format + i + 1), ap);
+				f = get_specifiers(format[i + 1], ap);
 			if (f == NULL)
 			{
 				_putchar(format[i]);
