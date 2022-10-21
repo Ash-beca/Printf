@@ -1,33 +1,36 @@
 #include "main.h"
 
 /**
- * get_flag - turns on flags if _printf finds
- * a flag modifier in the format string
- * @s: character that holds the flag specifier
- * @f: pointer to the struct flags
- * Return: 1 if flag has been turned on, 0 otherwise
+ * get_flags - Calculates flags that are working
+ * @format: Formatted string in which to print the arguments
+ * @i: take a parameter.
+ * Return: Flags:
  */
 
-int get_flag(char s, flags_t *f)
+int get_flags(const char *format, int *i)
 {
-	int i = 0;
+	/* - + 0 # ' ' */
+	/* 1 2 4 8  16 */
+	int j, k;
+	int flags = 0;
+	
+	const char FLAGS_C[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
 
-	switch (s)
+	for (k = *i + 1; format[k] != '\0'; k++)
 	{
-		case '+':
-			f->plus = 1;
-			i = 1;
-			break;
-		case ' ':
-			f->space = 1;
-			i = 1;
-			break;
-		case '#':
-			f->hash = 1;
-			i = 1;
+		for (j = 0; FLAGS_C[j] != '\0'; j++)
+			if (format[k] == FLAGS_C[j])
+			{
+				flags |= FLAGS_ARR[j];
+				break;
+			}
+
+		if (FLAGS_C[j] == 0)
 			break;
 	}
-	return (i);
+
+	*i = k - 1;
+
+	return (flags);
 }
-
-
