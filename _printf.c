@@ -11,8 +11,6 @@
  */
 int _printf(const char *format, ...)
 {
-	int (*get_print(char s))(va_list, flags_t *);
-	int (*get_print(char s))(va_list, flags_t *);
 	int (*pfunc)(va_list, flags_t *);
 	const char *p;
 	va_list arguments;
